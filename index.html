@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abinaya Sri | Portfolio</title>
+  <style>
+    /* ===== Global Styles ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+      color: #fff;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f39c12;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 80px 15px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f39c12;
+    }
+
+    section p {
+      font-size: 1.2rem;
+      max-width: 750px;
+    }
+
+    /* ===== Home ===== */
+    #home h2 {
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+    }
+
+    #home p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+    }
+
+    /* ===== About ===== */
+    #about img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+      border: 4px solid #f39c12;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+
+    #about p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Projects ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .project-card h3 {
+      color: #f39c12;
+      margin-bottom: 10px;
+    }
+
+    /* ===== Skills ===== */
+    #skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    #skills li {
+      list-style: none;
+      background: #f39c12;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+
+    #skills li:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== Certifications ===== */
+    .cert-list {
+      max-width: 700px;
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .cert-list li {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* ===== Contact ===== */
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 20px;
+    }
+
+    #contact input, #contact textarea {
+      margin-bottom: 12px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    #contact button {
+      padding: 12px;
+      background: #f39c12;
+      color: #000;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #contact button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 12px;
+      text-decoration: none;
+      color: #f39c12;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    /* ===== Responsive Navbar ===== */
+    @media(max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #111;
+        width: 200px;
+        display: none;
+        padding: 10px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.8rem;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header>
+    <h1>Abinaya Sri</h1>
+    <div class="menu-toggle">☰</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home -->
+  <section id="home">
+    <h2>ABINAYA SRI S</h2>
+    <p>
+      Frontend Developer | UI/UX Developer | SEO Specialist  
+      <br>Currently pursuing BSc AI & ML (1st Year)  
+      <br>Personal projects with a professional touch
+    </p>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="profile.jpg" alt="Abinaya Sri">
+    <p>
+      Hi, I'm Abinaya Sri — passionate web designer and founder of <b>Archon Tech</b>.  
+      I specialize in crafting modern and engaging websites, while integrating SEO and branding to deliver complete digital solutions.
+    </p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Temporary AI Chat Bot</h3>
+        <p>A chatbot project experimenting with conversational AI and automation.</p>
+      </div>
+      <div class="project-card">
+        <h3>Local SEO Project</h3>
+        <p>Optimized websites for search engines to improve local visibility and ranking.</p>
+      </div>
+      <div class="project-card">
+        <h3>Design Thinking Projects</h3>
+        <p>Applied design thinking methodology to create innovative digital solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>C++</li>
+      <li>Python</li>
+      <li>Canva</li>
+      <li>Pursuing Digital Marketing</li>
+    </ul>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+      <li>Design Thinking – IBM</li>
+      <li>Workshop Participation – Digital Marketing</li>
+      <li>Social Media Posts Internship</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <!-- Functional Contact Form -->
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Direct Links -->
+    <div class="social-links">
+      <a href="mailto:founder.archon@gmail.com">📧 Email</a>
+      <a href="tel:8056394297">📞 Call</a>
+      <a href="https://github.com/YOUR_GITHUB" target="_blank">💻 GitHub</a>
+      <a href="https://www.linkedin.com/in/abinaya-sri-2529aa37b" target="_blank">🔗 LinkedIn</a>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
