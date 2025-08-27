@@ -1,361 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abinaya Sri | Portfolio</title>
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* ===== Global Styles ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ---------- BASE STYLE ---------- */
+    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      color: #222;
+      line-height: 1.6;
       scroll-behavior: smooth;
-      color: #fff;
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: #1e1e1e;
+      color: #f5f5f5;
     }
 
+    /* ---------- HEADER / NAV ---------- */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-      z-index: 1000;
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: #ffffffcc;
       backdrop-filter: blur(10px);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      letter-spacing: 1px;
+    body.dark header {
+      background: #2c2c2c99;
     }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-    }
-
-    nav ul li {
-      margin-left: 20px;
-    }
-
+    header h1 { font-size: 1.4rem; font-weight: bold; color:#2563eb; }
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 20px; }
     nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.05rem;
-      transition: color 0.3s;
+      text-decoration: none; font-weight: 500;
+      color: inherit; transition: color 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: #2563eb;
+    }
+    .theme-toggle {
+      font-size: 1.2rem; cursor: pointer;
+      margin-left: 15px; background: none; border: none;
     }
 
-    nav ul li a:hover {
-      color: #f39c12;
-    }
-
+    /* ---------- SECTIONS ---------- */
     section {
       min-height: 100vh;
-      padding: 80px 15px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: 100px 20px 60px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       text-align: center;
     }
-
     section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #f39c12;
-    }
-
-    section p {
-      font-size: 1.2rem;
-      max-width: 750px;
-    }
-
-    /* ===== Home ===== */
-    #home h2 {
-      font-size: 3.2rem;
-      margin-bottom: 20px;
-    }
-
-    #home p {
-      font-size: 1.3rem;
-      line-height: 1.8;
-    }
-
-    /* ===== About ===== */
-    #about img {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
+      font-size: 2rem;
       margin-bottom: 15px;
-      object-fit: cover;
-      border: 4px solid #f39c12;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      color: #2563eb;
     }
+    section p { max-width: 700px; margin-bottom: 15px; }
 
-    #about p {
+    /* ---------- HOME ---------- */
+    #home {
+      background: linear-gradient(135deg, #eef2ff, #fdfdfd);
+    }
+    #home h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    #home p { font-size: 1.2rem; color: #555; }
+
+    /* ---------- ABOUT ---------- */
+    #about img {
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      border: 4px solid #2563eb;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    #about img:hover { transform: scale(1.05); }
+    .resume-btn {
+      margin-top: 15px;
+      display: inline-block;
+      background: #2563eb; color: #fff;
+      padding: 10px 20px; border-radius: 8px;
+      text-decoration: none; font-weight: bold;
+      transition: background 0.3s;
+    }
+    .resume-btn:hover { background: #1742a7; }
+
+    /* ---------- SOCIAL LINKS ---------- */
+    .social-links {
+      margin: 20px 0;
+      display: flex; gap: 15px; justify-content: center;
+    }
+    .social-links a {
+      display: flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      background: #2563eb; color: #fff;
       font-size: 1.2rem;
-      line-height: 1.7;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .social-links a:hover {
+      transform: translateY(-4px);
+      background: #1742a7;
     }
 
-    /* ===== Projects ===== */
+    /* ---------- PROJECTS ---------- */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 20px;
       width: 100%;
       max-width: 1000px;
     }
-
     .project-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
+      background: #fff;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-      backdrop-filter: blur(8px);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .project-card:hover {
       transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
-    .project-card h3 {
-      color: #f39c12;
-      margin-bottom: 10px;
+    /* ---------- CONTACT ---------- */
+    #contact .contact-info {
+      margin-bottom: 15px;
+      text-align: center;
     }
-
-    /* ===== Skills ===== */
-    #skills ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
+    #contact .contact-info a {
+      display: block;
+      margin: 5px 0;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
     }
-
-    #skills li {
-      list-style: none;
-      background: #f39c12;
-      color: #000;
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: transform 0.3s;
-    }
-
-    #skills li:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== Certifications ===== */
-    .cert-list {
-      max-width: 700px;
-      text-align: left;
-      margin-top: 15px;
-    }
-
-    .cert-list li {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    /* ===== Contact ===== */
     #contact form {
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       width: 100%;
-      max-width: 450px;
-      margin-bottom: 20px;
+      max-width: 420px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     }
-
     #contact input, #contact textarea {
       margin-bottom: 12px;
       padding: 12px;
-      border: none;
       border-radius: 6px;
-      outline: none;
+      border: 1px solid #ccc;
       font-size: 1rem;
     }
-
     #contact button {
       padding: 12px;
-      background: #f39c12;
-      color: #000;
-      font-size: 1rem;
-      font-weight: bold;
+      background: #2563eb;
       border: none;
       border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    #contact button:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .social-links a {
-      display: inline-block;
-      margin: 0 12px;
-      text-decoration: none;
-      color: #f39c12;
       font-weight: bold;
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    .social-links a:hover {
       color: #fff;
+      cursor: pointer;
+    }
+    #contact button:hover { background:#1742a7; }
+
+    /* ---------- SKILLS - Animated Bars ---------- */
+    .skills-container {
+      max-width: 720px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      text-align: left;
+      margin-top: 10px;
+    }
+    .skill {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .skill-icon {
+      font-size: 1.8rem;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+    .skill span {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .skill-bar {
+      background: #e0e7ff;
+      border-radius: 12px;
+      height: 12px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .skill-bar[data-progress]:after {
+      content: attr(data-progress);
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563eb;
+    }
+    .skill-level {
+      background: #2563eb;
+      height: 100%;
+      border-radius: 12px 0 0 12px;
+      width: 0;
+      animation: fillBar 2s ease-in-out forwards;
+      animation-delay: 0.3s;
+    }
+    @keyframes fillBar {
+      to { width: var(--bar-width); }
     }
 
-    /* ===== Responsive Navbar ===== */
-    @media(max-width: 768px) {
-      nav ul {
+    /* ---------- CASE STUDIES CENTERED & STYLED ---------- */
+    #case-studies {
+      max-width: 900px;
+      margin: 30px auto; /* Center horizontally */
+      padding: 30px 40px;
+      background: #f0f9ff;
+      border-left: 6px solid #2563eb;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center; /* Center heading */
+    }
+    #case-studies h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .case-study {
+      margin: 0 auto 30px;
+      max-width: 760px;
+      text-align: left; /* paragraphs & lists left aligned */
+      transition: box-shadow 0.3s;
+    }
+    .case-study:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .case-study h3 {
+      font-size: 1.8rem;
+      color: #1d4ed8;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-study h3 i {
+      color: #2563eb;
+      font-size: 1.6rem;
+    }
+    .case-study h4 {
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2rem;
+    }
+    .case-study h4 i {
+      color: #3b82f6;
+    }
+    .case-study p,
+    .case-study ul {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    .case-study ul { padding-left: 20px; list-style-type: disc; }
+    .key-result {
+      background: #dbeafe;
+      border-left: 4px solid #2563eb;
+      padding: 18px 20px;
+      margin: 20px 0;
+      font-size: 1rem;
+      color: #1e40af;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    /* Small devices */
+    @media (max-width: 768px) {
+      header {
         flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #111;
-        width: 200px;
-        display: none;
-        padding: 10px 0;
+        align-items: flex-start;
       }
-
-      nav ul.show {
-        display: flex;
+      nav ul {
+        margin-top: 10px;
+        flex-wrap: wrap;
       }
-
-      .menu-toggle {
-        display: block;
-        cursor: pointer;
-        font-size: 1.8rem;
+      nav ul li {
+        margin: 10px 10px 0 0;
       }
-    }
-
-    .menu-toggle {
-      display: none;
+      #case-studies {
+        padding: 20px;
+        margin-top: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Header / Navbar -->
+
+  <!-- Header -->
   <header>
     <h1>Abinaya Sri</h1>
-    <div class="menu-toggle">☰</div>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
+        <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </header>
 
   <!-- Home -->
   <section id="home">
-    <h2>ABINAYA SRI S</h2>
-    <p>
-      Frontend Developer | UI/UX Developer | SEO Specialist  
-      <br>Currently pursuing BSc AI & ML (1st Year)  
-      <br>Personal projects with a professional touch
-    </p>
+    <h2>Hi, I’m Abinaya Sri 👋</h2>
+    <p>Frontend Developer | UI/UX Designer | SEO Specialist</p>
   </section>
 
   <!-- About -->
   <section id="about">
     <h2>About Me</h2>
-    <img src="profile.jpg" alt="Abinaya Sri">
-    <p>
-      Hi, I'm Abinaya Sri — passionate web designer and founder of <b>Archon Tech</b>.  
-      I specialize in crafting modern and engaging websites, while integrating SEO and branding to deliver complete digital solutions.
-    </p>
+    <img src="your-photo.jpg" alt="Abinaya Sri" />
+    <p>I’m Abinaya Sri, a passionate <strong>Freelance Web Developer & UI/UX Designer</strong>. I love creating modern, responsive websites and digital experiences that deliver real value.</p>
+
+    <!-- Social Media Links -->
+    <div class="social-links">
+      <a href="https://www.instagram.com/archon_tech" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com/in/archon-tech-66a512380" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:founder.archon@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+918056394297" aria-label="Phone"><i class="fas fa-phone"></i></a>
+    </div>
+    <a href="resume.pdf" download class="resume-btn">📄 Download Resume</a>
   </section>
 
   <!-- Projects -->
   <section id="projects">
-    <h2>My Projects</h2>
+    <h2>Projects</h2>
     <div class="projects-grid">
-      <div class="project-card">
-        <h3>Temporary AI Chat Bot</h3>
-        <p>A chatbot project experimenting with conversational AI and automation.</p>
-      </div>
-      <div class="project-card">
-        <h3>Local SEO Project</h3>
-        <p>Optimized websites for search engines to improve local visibility and ranking.</p>
-      </div>
-      <div class="project-card">
-        <h3>Design Thinking Projects</h3>
-        <p>Applied design thinking methodology to create innovative digital solutions.</p>
-      </div>
+      <div class="project-card"><h3>🚀 Project Coming Soon</h3></div>
+      <div class="project-card"><h3>🚀 Project Coming Soon</h3></div>
+      <div class="project-card"><h3>🚀 Project Coming Soon</h3></div>
     </div>
   </section>
 
   <!-- Skills -->
   <section id="skills">
     <h2>Skills</h2>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>C++</li>
-      <li>Python</li>
-      <li>Canva</li>
-      <li>Pursuing Digital Marketing</li>
-    </ul>
+    <div class="skills-container">
+      <div class="skill">
+        <i class="fab fa-html5 skill-icon" aria-hidden="true"></i>
+        <span>HTML</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 90%;" data-progress="90%"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-css3-alt skill-icon" aria-hidden="true"></i>
+        <span>CSS</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 85%;" data-progress="85%"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-js skill-icon" aria-hidden="true"></i>
+        <span>JavaScript</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 80%;" data-progress="80%"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-python skill-icon" aria-hidden="true"></i>
+        <span>Python</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 75%;" data-progress="75%"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fas fa-search skill-icon" aria-hidden="true"></i>
+        <span>SEO</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 70%;" data-progress="70%"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fas fa-pencil-ruler skill-icon" aria-hidden="true"></i>
+        <span>UI/UX</span>
+        <div class="skill-bar"><div class="skill-level" style="--bar-width: 80%;" data-progress="80%"></div></div>
+      </div>
+    </div>
   </section>
 
-  <!-- Certifications -->
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <ul class="cert-list">
-      <li>Design Thinking – IBM</li>
-      <li>Workshop Participation – Digital Marketing</li>
-      <li>Social Media Posts Internship</li>
-    </ul>
+  <!-- Case Studies -->
+  <section id="case-studies">
+    <h2>Case Studies</h2>
+
+    <article class="case-study">
+      <h3><i class="fas fa-briefcase"></i> From Freelancer to Entrepreneur — Building a Digital Agency</h3>
+
+      <h4><i class="fas fa-info-circle"></i> Overview</h4>
+      <p>
+        As a freelancer starting with small website projects, I aimed to build a sustainable business by launching a digital agency to serve growing client demands with quality and professionalism.
+      </p>
+
+      <h4><i class="fas fa-exclamation-triangle"></i> Challenge</h4>
+      <p>
+        Initially, juggling multiple projects alone led to workload bottlenecks and limited growth potential. I had to transition from solo freelancing to managing a team and scaling business operations while maintaining service quality.
+      </p>
+
+      <h4><i class="fas fa-cogs"></i> Approach</h4>
+      <ul>
+        <li><strong>Skill Expansion:</strong> Broadened service offerings by learning new skills like UI/UX design, SEO, and project management.</li>
+        <li><strong>Client Relationships:</strong> Focused on building long-term client relationships rather than one-off gigs through transparent communication and delivering value.</li>
+        <li><strong>Team Building:</strong> Gradually hired talented contractors and freelancers to delegate tasks and increase capacity.</li>
+        <li><strong>Process Development:</strong> Created streamlined workflows, onboarding procedures, and quality checks to ensure consistent project delivery.</li>
+        <li><strong>Branding & Marketing:</strong> Developed a professional brand identity and website to attract serious clients and position the agency competitively.</li>
+      </ul>
+
+      <h4><i class="fas fa-tools"></i> Key Actions & Solutions</h4>
+      <ul>
+        <li>Leveraged project management tools (Trello, Asana) for team coordination.</li>
+        <li>Invested in client CRM systems to organize leads and communication.</li>
+        <li>Introduced packages and retainer models for predictable income.</li>
+        <li>Attended entrepreneurship workshops and networked for business insights.</li>
+      </ul>
+
+      <h4><i class="fas fa-chart-line"></i> Results</h4>
+      <blockquote class="key-result">
+        Business grew from a solo freelance operation to a small team agency in under two years.<br />
+        Increased client retention by 40% due to strong relationship focus.<br />
+        Monthly revenue consistently exceeded freelance income by 3x.<br />
+        Successfully managed 5+ concurrent projects without quality issues.
+      </blockquote>
+
+      <h4><i class="fas fa-lightbulb"></i> Learnings</h4>
+      <p>
+        Entrepreneurship requires shifting mindset from delivering work yourself to empowering others.<br />
+        Systems and processes are vital to scale efficiently.<br />
+        Building trust through transparency and communication is as important as technical skills.<br />
+        Continuous learning and networking fuel business growth.
+      </p>
+    </article>
+
   </section>
 
   <!-- Contact -->
   <section id="contact">
     <h2>Contact Me</h2>
-
-    <!-- Functional Contact Form -->
-    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="_replyto" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-
-    <!-- Direct Links -->
-    <div class="social-links">
-      <a href="mailto:founder.archon@gmail.com">📧 Email</a>
-      <a href="tel:8056394297">📞 Call</a>
-      <a href="https://github.com/YOUR_GITHUB" target="_blank">💻 GitHub</a>
-      <a href="https://www.linkedin.com/in/abinaya-sri-2529aa37b" target="_blank">🔗 LinkedIn</a>
+    <div class="contact-info">
+      <a href="mailto:founder.archon@gmail.com"><i class="fas fa-envelope"></i> founder.archon@gmail.com</a>
+      <a href="tel:+918056394297"><i class="fas fa-phone"></i> +91 80563 94297</a>
+      <a href="https://linkedin.com/in/archon-tech-66a512380" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
     </div>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
   </section>
 
   <script>
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav ul');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('show');
+    // Theme Toggle (Dark/Light)
+    const body = document.body;
+    const toggle = document.getElementById('themeToggle');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggle.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        toggle.textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        toggle.textContent = '🌙';
+      }
+    });
+
+    // Active Navbar Highlight
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
     });
   </script>
 </body>
